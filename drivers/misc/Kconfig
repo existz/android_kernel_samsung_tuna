@@ -585,4 +585,10 @@ config FSYNC_CONTROL
         help
           Say Y here to enable FSync Control
 
+config COLOR_CONTROL
+	bool "Support for Color Control"
+	default y
+	help
+	  Say Y here to enable Color Control
+
 endif # MISC_DEVICES
