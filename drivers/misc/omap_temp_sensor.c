@@ -55,13 +55,14 @@ extern void omap_thermal_throttle(void);
 extern void omap_thermal_unthrottle(void);
 
 static void throttle_delayed_work_fn(struct work_struct *work);
+static int throttle_state = 1;
 
 #define THROTTLE_DELAY_MS	1000
 
 #define TSHUT_THRESHOLD_TSHUT_HOT	110000	/* 110 deg C */
 #define TSHUT_THRESHOLD_TSHUT_COLD	100000	/* 100 deg C */
-#define BGAP_THRESHOLD_T_HOT		64000	/* 64 deg C */
-#define BGAP_THRESHOLD_T_COLD		61000	/* 61 deg C */
+#define BGAP_THRESHOLD_T_HOT		72000	/* 72 deg C */
+#define BGAP_THRESHOLD_T_COLD		68000	/* 68 deg C */
 #define OMAP_ADC_START_VALUE	530
 #define OMAP_ADC_END_VALUE	923
 
@@ -273,11 +274,14 @@ static ssize_t omap_temp_show_current(struct device *dev,
 static ssize_t omap_throttle_store(struct device *dev,
 	struct device_attribute *devattr, const char *buf, size_t count)
 {
-	if (count && buf[0] == '1')
-		omap_thermal_throttle();
-	else
+	if (count && buf[0] == '1') {
+                throttle_state = 1;
+//		omap_thermal_throttle();
+	}
+	else {
+		throttle_state = 0;
 		omap_thermal_unthrottle();
-
+	}
 	return count;
 }
 
@@ -390,9 +394,10 @@ static void throttle_delayed_work_fn(struct work_struct *work)
 					     throttle_work.work);
 	curr = omap_read_current_temp(temp_sensor);
 
-	if (curr >= BGAP_THRESHOLD_T_HOT || curr < 0) {
+	if ((curr >= BGAP_THRESHOLD_T_HOT || curr < 0)) {
 		pr_warn("%s: OMAP temp read %d exceeds the threshold\n",
 			__func__, curr);
+	if (throttle_state == 1)
 		omap_thermal_throttle();
 		schedule_delayed_work(&temp_sensor->throttle_work,
 			msecs_to_jiffies(THROTTLE_DELAY_MS));
@@ -431,7 +436,8 @@ static irqreturn_t omap_talert_irq_handler(int irq, void *data)
 	    & OMAP4_COLD_FLAG_MASK;
 	temp_offset = omap_temp_sensor_readl(temp_sensor, BGAP_CTRL_OFFSET);
 	if (t_hot) {
-		omap_thermal_throttle();
+		if (throttle_state == 1)
+			omap_thermal_throttle();
 		schedule_delayed_work(&temp_sensor->throttle_work,
 			msecs_to_jiffies(THROTTLE_DELAY_MS));
 		temp_offset &= ~(OMAP4_MASK_HOT_MASK);
