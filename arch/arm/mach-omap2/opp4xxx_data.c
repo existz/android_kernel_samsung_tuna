@@ -170,10 +170,10 @@ static struct omap_opp_def __initdata omap443x_opp_def_list[] = {
 #define OMAP4460_VDD_MPU_OPPTURBO_UV            1070000 //1036 @ TNP
 #define OMAP4460_VDD_MPU_OPPNITRO_UV            1150000 //1190 @ TNP
 //#define OMAP4460_VDD_MPU_OPPNITRO_UV               1220000 //1344 \ 1382 for 1804
-#define OMAP4460_VDD_MPU_OPPOC_UV               1240000 //1344 \ 1382
+//#define OMAP4460_VDD_MPU_OPPOC_UV               1240000 //1344 \ 1382
 //#define OMAP4460_VDD_MPU_OPPOC_UV             1280000 //1420
 //#define OMAP4460_VDD_MPU_OPPOC_UV             1300000 //1536
-//#define OMAP4460_VDD_MPU_OPPOC_UV          1385000 //1689 \ 1728 \ 1766
+#define OMAP4460_VDD_MPU_OPPOC_UV          1385000 //1689 \ 1728 \ 1766
 
 #endif
 
@@ -272,10 +272,10 @@ static struct omap_opp_def __initdata omap446x_opp_def_list[] = {
 //      OPP_INITIALIZER("mpu", "virt_dpll_mpu_ck", "mpu", true, 1344000000, OMAP4460_VDD_MPU_OPPNITRO_UV),
 
         /* MPU OPP4 - OPP-Nitro SpeedBin */
-	OPP_INITIALIZER("mpu", "virt_dpll_mpu_ck", "mpu", true, 1344000000, OMAP4460_VDD_MPU_OPPOC_UV),
+//	OPP_INITIALIZER("mpu", "virt_dpll_mpu_ck", "mpu", true, 1344000000, OMAP4460_VDD_MPU_OPPOC_UV),
 //        OPP_INITIALIZER("mpu", "virt_dpll_mpu_ck", "mpu", true, 1420800000, OMAP4460_VDD_MPU_OPPOC_UV),
 //        OPP_INITIALIZER("mpu", "virt_dpll_mpu_ck", "mpu", true, 1536000000, OMAP4460_VDD_MPU_OPPOC_UV),
-//      OPP_INITIALIZER("mpu", "virt_dpll_mpu_ck", "mpu", true, 1689600000, OMAP4460_VDD_MPU_OPPOC_UV),
+      OPP_INITIALIZER("mpu", "virt_dpll_mpu_ck", "mpu", true, 1689600000, OMAP4460_VDD_MPU_OPPOC_UV),
 //      OPP_INITIALIZER("mpu", "virt_dpll_mpu_ck", "mpu", true, 1728000000, OMAP4460_VDD_MPU_OPPOC_UV),
 //      OPP_INITIALIZER("mpu", "virt_dpll_mpu_ck", "mpu", true, 1766400000, OMAP4460_VDD_MPU_OPPOC_UV),
 //      OPP_INITIALIZER("mpu", "virt_dpll_mpu_ck", "mpu", true, 1804800000, OMAP4460_VDD_MPU_OPPOC_UV),
