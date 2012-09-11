@@ -478,7 +478,7 @@ static ssize_t store_uv_mv_table(struct cpufreq_policy *policy,
 {
 	int i = 0;
 	unsigned long volt_cur, volt_old;
-	int ret;
+	int ret, max_volt;
 	char size_cur[16];
 	struct opp *opp_cur;
 	struct voltagedomain *mpu_voltdm;
@@ -493,8 +493,16 @@ static ssize_t store_uv_mv_table(struct cpufreq_policy *policy,
 			if(ret != 1) {
 				return -EINVAL;
 			}
-			if ( volt_cur > 1400 )
-                                volt_cur = 1400;
+
+			if ( freq_table[i].frequency > 1728000 )
+				max_volt = 1450;
+			else
+				max_volt = 1400;
+
+			if ( volt_cur > max_volt )
+                                	volt_cur = max_volt;
+
+			printk("[MM] volt_cur for %d set to %dmV\n", freq_table[i].frequency , volt_cur);
 
 			/* Alter voltage. First do it in our opp */
 			opp_cur = opp_find_freq_exact(mpu_dev,
