@@ -319,10 +319,6 @@ module_param(dhd_sysioc, uint, 0);
 /* Error bits */
 module_param(dhd_msg_level, int, 0);
 
-/* load firmware and/or nvram values from the filesystem */
-module_param_string(firmware_path, firmware_path, MOD_PARAM_PATHLEN, 0660);
-module_param_string(nvram_path, nvram_path, MOD_PARAM_PATHLEN, 0);
-
 /* Wifi PM Mode */
 /* PM == true uses stock PM_MAX */
 /* PM == false uses PM_FAST */
