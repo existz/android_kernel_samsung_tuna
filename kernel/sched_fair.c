@@ -1633,6 +1633,8 @@ static int select_idle_sibling(struct task_struct *p, int target)
 	struct sched_domain *sd;
 	int i;
 
+	goto done;
+
 	/*
 	 * If the task is going to be woken-up on this cpu and if it is
 	 * already idle, then it is the right target.
@@ -1671,7 +1673,7 @@ static int select_idle_sibling(struct task_struct *p, int target)
 			break;
 	}
 	rcu_read_unlock();
-
+done:
 	return target;
 }
 
