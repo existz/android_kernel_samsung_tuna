@@ -165,16 +165,22 @@ static struct omap_opp_def __initdata omap443x_opp_def_list[] = {
 
 #else
 
-#define OMAP4460_VDD_MPU_OPP50_UV                850000 //307
+/*#define OMAP4460_VDD_MPU_OPP50_UV                850000 //307
 #define OMAP4460_VDD_MPU_OPP100_UV              1000000 //691 @ TNP
 #define OMAP4460_VDD_MPU_OPPTURBO_UV            1070000 //1036 @ TNP
 #define OMAP4460_VDD_MPU_OPPNITRO_UV            1150000 //1190 @ TNP
 //#define OMAP4460_VDD_MPU_OPPNITRO_UV               1220000 //1344 \ 1382 for 1804
-//#define OMAP4460_VDD_MPU_OPPOC_UV               1240000 //1344 \ 1382
+#define OMAP4460_VDD_MPU_OPPOC_UV               1240000 //1344 \ 1382*/
 //#define OMAP4460_VDD_MPU_OPPOC_UV             1280000 //1420
 //#define OMAP4460_VDD_MPU_OPPOC_UV             1300000 //1536
-#define OMAP4460_VDD_MPU_OPPOC_UV          1385000 //1689 \ 1728
+//#define OMAP4460_VDD_MPU_OPPOC_UV          1385000 //1689 \ 1728
 //#define OMAP4460_VDD_MPU_OPPOC_UV          1400000 // 1766 / 1804
+
+#define OMAP4460_VDD_MPU_OPP50_UV                870000 //307
+#define OMAP4460_VDD_MPU_OPP100_UV              1020000 //691 @ TNP
+#define OMAP4460_VDD_MPU_OPPTURBO_UV            1090000 //1036 @ TNP
+#define OMAP4460_VDD_MPU_OPPNITRO_UV            1170000 //1190 @ TNP
+#define OMAP4460_VDD_MPU_OPPOC_UV               1260000 //1344 \ 1382
 
 #endif
 
@@ -188,10 +194,10 @@ struct omap_volt_data omap446x_vdd_mpu_volt_data[] = {
 	VOLT_DATA_DEFINE(0, 0, 0, 0, 0, 0),
 };
 
-#define OMAP4460_VDD_IVA_OPP50_UV		 850000
-#define OMAP4460_VDD_IVA_OPP100_UV		 950000
-#define OMAP4460_VDD_IVA_OPPTURBO_UV		1000000
-#define OMAP4460_VDD_IVA_OPPNITRO_UV		1090000
+#define OMAP4460_VDD_IVA_OPP50_UV		 860000
+#define OMAP4460_VDD_IVA_OPP100_UV		 960000
+#define OMAP4460_VDD_IVA_OPPTURBO_UV		1010000
+#define OMAP4460_VDD_IVA_OPPNITRO_UV		1100000
 
 struct omap_volt_data omap446x_vdd_iva_volt_data[] = {
 	VOLT_DATA_DEFINE(OMAP4460_VDD_IVA_OPP50_UV, 13000, OMAP44XX_CONTROL_FUSE_IVA_OPP50, 0xf4, 0x0c, OMAP_ABB_NOMINAL_OPP),
@@ -201,10 +207,14 @@ struct omap_volt_data omap446x_vdd_iva_volt_data[] = {
 	VOLT_DATA_DEFINE(0, 0, 0, 0, 0, 0),
 };
 
-#define OMAP4460_VDD_CORE_OPP50_UV               880000 // TNP
-#define OMAP4460_VDD_CORE_OPP100_UV              960000 // 1344
+//#define OMAP4460_VDD_CORE_OPP50_UV               880000 // TNP
+#define OMAP4460_VDD_CORE_OPP50_UV               900000 // TNP-SOURCERY
+//#define OMAP4460_VDD_CORE_OPP100_UV              960000 // 1344
+#define OMAP4460_VDD_CORE_OPP100_UV              980000 // 1344-SOURCERY
+
 //#define OMAP4460_VDD_CORE_OPP100_OV_UV                1030000 // 1344 - 307 -z3 test
-#define OMAP4460_VDD_CORE_OPP100_OV_UV          1050000 //     / 384
+///#define OMAP4460_VDD_CORE_OPP100_OV_UV          1050000 //     / 384
+#define OMAP4460_VDD_CORE_OPP100_OV_UV          1070000 // SOURCERY    / 384
 //#define OMAP4460_VDD_CORE_OPP100_OV_UV          1090000 //     / 512
 
 /*#define OMAP4460_VDD_CORE_OPP50_UV             860000 // TUV
@@ -273,10 +283,10 @@ static struct omap_opp_def __initdata omap446x_opp_def_list[] = {
 //      OPP_INITIALIZER("mpu", "virt_dpll_mpu_ck", "mpu", true, 1344000000, OMAP4460_VDD_MPU_OPPNITRO_UV),
 
         /* MPU OPP4 - OPP-Nitro SpeedBin */
-//	OPP_INITIALIZER("mpu", "virt_dpll_mpu_ck", "mpu", true, 1344000000, OMAP4460_VDD_MPU_OPPOC_UV),
+	OPP_INITIALIZER("mpu", "virt_dpll_mpu_ck", "mpu", true, 1344000000, OMAP4460_VDD_MPU_OPPOC_UV),
 //        OPP_INITIALIZER("mpu", "virt_dpll_mpu_ck", "mpu", true, 1420800000, OMAP4460_VDD_MPU_OPPOC_UV),
 //        OPP_INITIALIZER("mpu", "virt_dpll_mpu_ck", "mpu", true, 1536000000, OMAP4460_VDD_MPU_OPPOC_UV),
-        OPP_INITIALIZER("mpu", "virt_dpll_mpu_ck", "mpu", true, 1689600000, OMAP4460_VDD_MPU_OPPOC_UV),
+//        OPP_INITIALIZER("mpu", "virt_dpll_mpu_ck", "mpu", true, 1689600000, OMAP4460_VDD_MPU_OPPOC_UV),
 //       OPP_INITIALIZER("mpu", "virt_dpll_mpu_ck", "mpu", true, 1728000000, OMAP4460_VDD_MPU_OPPOC_UV),
 //      OPP_INITIALIZER("mpu", "virt_dpll_mpu_ck", "mpu", true, 1766400000, OMAP4460_VDD_MPU_OPPOC_UV),
 //      OPP_INITIALIZER("mpu", "virt_dpll_mpu_ck", "mpu", true, 1804800000, OMAP4460_VDD_MPU_OPPOC_UV),
