@@ -48,6 +48,7 @@ config OLD_MCOUNT
 
 config DEBUG_USER
 	bool "Verbose user fault messages"
+	default n
 	help
 	  When a user program crashes due to an exception, the kernel can
 	  print a brief message explaining what the problem was. This is
