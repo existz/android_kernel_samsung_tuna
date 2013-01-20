@@ -2,6 +2,12 @@ menu "Kernel hacking"
 
 source "lib/Kconfig.debug"
 
+config DISABLE_PRINTK
+	bool "Disable Printk in Kernel"
+	depends on EXPERIMENTAL
+	---help---
+	  Disable printk completely in the kernel to reduce overhead
+
 config STRICT_DEVMEM
 	bool "Filter access to /dev/mem"
 	depends on MMU
